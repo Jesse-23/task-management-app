@@ -328,3 +328,56 @@ class TaskManager {
 
 // This initializes the app
 const taskManager = new TaskManager();
+
+// Progressive Web App (PWA) + INSTALL PROMPT SETUP
+
+// this registers service worker
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("service-worker.js")
+      .then(() => console.log("✅ Service Worker registered"))
+      .catch((err) => console.log("❌ Service Worker failed:", err));
+  });
+}
+
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  // this hows install suggestion after 1 minute (60,000 ms)
+  setTimeout(() => {
+    showInstallPrompt();
+  }, 60000);
+});
+
+function showInstallPrompt() {
+  // this only shows once per session
+  if (sessionStorage.getItem("installPromptShown")) return;
+  sessionStorage.setItem("installPromptShown", "true");
+
+  const banner = document.createElement("div");
+  banner.className =
+    "fixed bottom-6 right-6 bg-primary text-primary-foreground px-4 py-3 rounded-lg shadow-lg animate-fade-in z-50 flex items-center gap-3";
+  banner.innerHTML = `
+    <span>📱 Install this Task Manager app?</span>
+    <button id="install-btn" class="bg-accent text-accent-foreground px-3 py-1 rounded-md font-semibold hover:opacity-90 transition-all">Install</button>
+  `;
+  document.body.appendChild(banner);
+
+  document.getElementById("install-btn").addEventListener("click", async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === "accepted") {
+        console.log("App installed!");
+      } else {
+        console.log("User dismissed install");
+      }
+      deferredPrompt = null;
+      banner.remove();
+    }
+  });
+}
