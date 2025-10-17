@@ -328,36 +328,3 @@ class TaskManager {
 
 // This initializes the app
 const taskManager = new TaskManager();
-
-// --- (Progressive Web App)PWA Install Button Logic ---
-let deferredPrompt;
-const installBtn = document.getElementById("install-btn");
-
-// Store the prompt event when available
-window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    console.log("✅ Install prompt event saved");
-});
-
-// Always show button, but check if prompt is ready
-installBtn.addEventListener("click", async () => {
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === "accepted") {
-            console.log("📱 User installed the app");
-        } else {
-            console.log("❌ User dismissed the install prompt");
-        }
-        deferredPrompt = null;
-    } else {
-        alert("⚠️ App not ready for installation yet. Please wait a moment and try again.");
-    }
-});
-
-// Optional: hide button if app is already installed
-window.addEventListener("appinstalled", () => {
-    console.log("🎉 App installed");
-});
-

@@ -1,289 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Task Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="fontawesome/css/all.min.css" />
-    <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#0891b2" />
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              background: "var(--background)",
-              foreground: "var(--foreground)",
-              card: "var(--card)",
-              "card-foreground": "var(--card-foreground)",
-              primary: "var(--primary)",
-              "primary-foreground": "var(--primary-foreground)",
-              secondary: "var(--secondary)",
-              "secondary-foreground": "var(--secondary-foreground)",
-              muted: "var(--muted)",
-              "muted-foreground": "var(--muted-foreground)",
-              accent: "var(--accent)",
-              "accent-foreground": "var(--accent-foreground)",
-              destructive: "var(--destructive)",
-              "destructive-foreground": "var(--destructive-foreground)",
-              border: "var(--border)",
-              input: "var(--input)",
-              ring: "var(--ring)",
-            },
-            animation: {
-              "slide-up": "slideUp 0.3s ease-out",
-              "fade-in": "fadeIn 0.2s ease-out",
-            },
-            keyframes: {
-              slideUp: {
-                "0%": { transform: "translateY(10px)", opacity: "0" },
-                "100%": { transform: "translateY(0)", opacity: "1" },
-              },
-              fadeIn: {
-                "0%": { opacity: "0" },
-                "100%": { opacity: "1" },
-              },
-            },
-          },
-        },
-      };
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        background: 'var(--background)',
+                        foreground: 'var(--foreground)',
+                        card: 'var(--card)',
+                        'card-foreground': 'var(--card-foreground)',
+                        primary: 'var(--primary)',
+                        'primary-foreground': 'var(--primary-foreground)',
+                        secondary: 'var(--secondary)',
+                        'secondary-foreground': 'var(--secondary-foreground)',
+                        muted: 'var(--muted)',
+                        'muted-foreground': 'var(--muted-foreground)',
+                        accent: 'var(--accent)',
+                        'accent-foreground': 'var(--accent-foreground)',
+                        destructive: 'var(--destructive)',
+                        'destructive-foreground': 'var(--destructive-foreground)',
+                        border: 'var(--border)',
+                        input: 'var(--input)',
+                        ring: 'var(--ring)'
+                    },
+                    animation: {
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'fade-in': 'fadeIn 0.2s ease-out'
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
     </script>
     <style>
-      :root {
-        --background: #ffffff;
-        --foreground: #4b5563;
-        --card: #f9fafb;
-        --card-foreground: #4b5563;
-        --primary: #0891b2;
-        --primary-foreground: #ffffff;
-        --secondary: #f9fafb;
-        --secondary-foreground: #4b5563;
-        --muted: #f0fdf4;
-        --muted-foreground: #374151;
-        --accent: #84cc16;
-        --accent-foreground: #ffffff;
-        --destructive: #dc2626;
-        --destructive-foreground: #ffffff;
-        --border: #e5e7eb;
-        --input: #ffffff;
-        --ring: rgba(8, 145, 178, 0.2);
-      }
+        :root {
+            --background: #ffffff;
+            --foreground: #4b5563;
+            --card: #f9fafb;
+            --card-foreground: #4b5563;
+            --primary: #0891b2;
+            --primary-foreground: #ffffff;
+            --secondary: #f9fafb;
+            --secondary-foreground: #4b5563;
+            --muted: #f0fdf4;
+            --muted-foreground: #374151;
+            --accent: #84cc16;
+            --accent-foreground: #ffffff;
+            --destructive: #dc2626;
+            --destructive-foreground: #ffffff;
+            --border: #e5e7eb;
+            --input: #ffffff;
+            --ring: rgba(8, 145, 178, 0.2);
+        }
 
-      .dark {
-        --background: #0f172a;
-        --foreground: #f1f5f9;
-        --card: #1e293b;
-        --card-foreground: #f1f5f9;
-        --primary: #0ea5e9;
-        --primary-foreground: #0f172a;
-        --secondary: #334155;
-        --secondary-foreground: #f1f5f9;
-        --muted: #1e293b;
-        --muted-foreground: #94a3b8;
-        --accent: #84cc16;
-        --accent-foreground: #0f172a;
-        --destructive: #ef4444;
-        --destructive-foreground: #ffffff;
-        --border: #334155;
-        --input: #1e293b;
-        --ring: rgba(14, 165, 233, 0.2);
-      }
+        .dark {
+            --background: #0f172a;
+            --foreground: #f1f5f9;
+            --card: #1e293b;
+            --card-foreground: #f1f5f9;
+            --primary: #0ea5e9;
+            --primary-foreground: #0f172a;
+            --secondary: #334155;
+            --secondary-foreground: #f1f5f9;
+            --muted: #1e293b;
+            --muted-foreground: #94a3b8;
+            --accent: #84cc16;
+            --accent-foreground: #0f172a;
+            --destructive: #ef4444;
+            --destructive-foreground: #ffffff;
+            --border: #334155;
+            --input: #1e293b;
+            --ring: rgba(14, 165, 233, 0.2);
+        }
     </style>
-  </head>
-  <body
-    class="bg-background text-foreground min-h-screen font-sans transition-colors duration-300"
-  >
+</head>
+<body class="bg-background text-foreground min-h-screen font-sans transition-colors duration-300">
     <!-- Container for notifications -->
     <div id="toast-container" class="fixed top-4 right-4 z-50"></div>
 
     <!-- Main Container -->
     <div class="container mx-auto px-4 py-6 max-w-4xl">
-      <!-- Header -->
-      <header class="flex items-center justify-between mb-8">
-        <div>
-          <h1 class="text-3xl font-bold text-foreground mb-1">Task Manager</h1>
-          <p class="text-muted-foreground">Stay organized and productive.</p>
-        </div>
-        <div class="flex items-center gap-3">
-          <!-- Install App Button -->
-          <button
-            id="install-btn"
-            class="p-2 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-all duration-200"
-            title="Install App"
-          >
-            <i class="fas fa-download w-5 h-5"></i>
-          </button>
+        <!-- Header -->
+        <header class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-foreground mb-1">Task Manager</h1>
+                <p class="text-muted-foreground">Stay organized and productive.</p>
+            </div>
+            <button 
+                id="theme-toggle" 
+                class="p-2 rounded-lg bg-card border border-border hover:bg-secondary transition-colors duration-200"
+                title="Toggle theme"
+            >
+                <i id="sun-icon" class="fas fa-sun w-5 h-5 text-foreground"></i>
+                <i id="moon-icon" class="fas fa-moon w-5 h-5 text-foreground hidden"></i>
+            </button>
+        </header>
 
-          <!-- Theme Toggle -->
-          <button
-            id="theme-toggle"
-            class="p-2 rounded-lg bg-card border border-border hover:bg-secondary transition-colors duration-200"
-            title="Toggle theme"
-          >
-            <i id="sun-icon" class="fas fa-sun w-5 h-5 text-foreground"></i>
-            <i
-              id="moon-icon"
-              class="fas fa-moon w-5 h-5 text-foreground hidden"
-            ></i>
-          </button>
+        <!-- Task Form -->
+        <div class="bg-card rounded-lg border border-border p-6 mb-6 shadow-sm">
+            <form id="task-form" class="flex flex-col sm:flex-row gap-3">
+                <input 
+                    type="text" 
+                    id="task-input" 
+                    placeholder="Enter a new task..." 
+                    class="flex-1 px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary transition-all duration-200 text-foreground"
+                    required
+                >
+                <button 
+                    type="submit" 
+                    class="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200 font-medium shadow-sm"
+                >
+                    Add Task
+                </button>
+            </form>
         </div>
-      </header>
 
-      <!-- Task Form -->
-      <div class="bg-card rounded-lg border border-border p-6 mb-6 shadow-sm">
-        <form id="task-form" class="flex flex-col sm:flex-row gap-3">
-          <input
-            type="text"
-            id="task-input"
-            placeholder="Enter a new task..."
-            class="flex-1 px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary transition-all duration-200 text-foreground"
-            required
-          />
-          <button
-            type="submit"
-            class="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200 font-medium shadow-sm"
-          >
-            Add Task
-          </button>
-        </form>
-      </div>
-
-      <!-- Quick Stats -->
-      <div class="grid grid-cols-3 gap-4 mb-6">
-        <div
-          class="bg-card rounded-lg p-4 text-center shadow-sm border border-border"
-        >
-          <div class="text-2xl font-bold text-primary" id="total-tasks">0</div>
-          <div class="text-sm text-muted-foreground">Total</div>
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-3 gap-4 mb-6">
+            <div class="bg-card rounded-lg p-4 text-center shadow-sm border border-border">
+                <div class="text-2xl font-bold text-primary" id="total-tasks">0</div>
+                <div class="text-sm text-muted-foreground">Total</div>
+            </div>
+            <div class="bg-card rounded-lg p-4 text-center shadow-sm border border-border">
+                <div class="text-2xl font-bold text-accent" id="completed-tasks">0</div>
+                <div class="text-sm text-muted-foreground">Completed</div>
+            </div>
+            <div class="bg-card rounded-lg p-4 text-center shadow-sm border border-border">
+                <div class="text-2xl font-bold text-orange-500" id="pending-tasks">0</div>
+                <div class="text-sm text-muted-foreground">Pending</div>
+            </div>
         </div>
-        <div
-          class="bg-card rounded-lg p-4 text-center shadow-sm border border-border"
-        >
-          <div class="text-2xl font-bold text-accent" id="completed-tasks">
-            0
-          </div>
-          <div class="text-sm text-muted-foreground">Completed</div>
-        </div>
-        <div
-          class="bg-card rounded-lg p-4 text-center shadow-sm border border-border"
-        >
-          <div class="text-2xl font-bold text-orange-500" id="pending-tasks">
-            0
-          </div>
-          <div class="text-sm text-muted-foreground">Pending</div>
-        </div>
-      </div>
 
-      <!-- Filter Buttons -->
-      <div class="flex flex-wrap gap-2 mb-6 justify-center">
-        <button
-          data-filter="all"
-          class="filter-btn px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-primary text-primary-foreground shadow-sm"
-        >
-          All Tasks
-        </button>
-        <button
-          data-filter="pending"
-          class="filter-btn px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-secondary text-secondary-foreground hover:bg-muted"
-        >
-          Pending
-        </button>
-        <button
-          data-filter="completed"
-          class="filter-btn px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-secondary text-secondary-foreground hover:bg-muted"
-        >
-          Completed
-        </button>
-      </div>
-
-      <!-- Tasks Container -->
-      <div id="tasks-container" class="space-y-3">
-        <!-- Tasks will be added here -->
-      </div>
-
-      <!-- Empty State -->
-      <div id="empty-state" class="text-center py-12 hidden">
-        <div
-          class="w-16 h-16 mx-auto mb-4 bg-muted rounded-full flex items-center justify-center"
-        >
-          <i class="fas fa-clipboard-list text-2xl text-muted-foreground"></i>
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap gap-2 mb-6 justify-center">
+            <button 
+                data-filter="all" 
+                class="filter-btn px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-primary text-primary-foreground shadow-sm"
+            >
+                All Tasks
+            </button>
+            <button 
+                data-filter="pending" 
+                class="filter-btn px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-secondary text-secondary-foreground hover:bg-muted"
+            >
+                Pending
+            </button>
+            <button 
+                data-filter="completed" 
+                class="filter-btn px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-secondary text-secondary-foreground hover:bg-muted"
+            >
+                Completed
+            </button>
         </div>
-        <h3 class="text-xl font-semibold text-foreground mb-2">No tasks yet</h3>
-        <p class="text-muted-foreground">
-          Add your first task above to get started
-        </p>
-      </div>
+
+        <!-- Tasks Container -->
+        <div id="tasks-container" class="space-y-3">
+            <!-- Tasks will be dynamically inserted here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="text-center py-12 hidden">
+            <div class="w-16 h-16 mx-auto mb-4 bg-muted rounded-full flex items-center justify-center">
+                <i class="fas fa-clipboard-list text-2xl text-muted-foreground"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-foreground mb-2">No tasks yet</h3>
+            <p class="text-muted-foreground">Add your first task above to get started</p>
+        </div>
     </div>
 
     <!-- for Edit -->
-    <div
-      id="edit-modal"
-      class="fixed inset-0 bg-black/50 hidden items-center justify-center z-40 p-4"
-    >
-      <div
-        class="bg-card rounded-lg shadow-xl max-w-md w-full animate-fade-in border border-border"
-      >
-        <div class="p-6">
-          <h3 class="text-lg font-semibold text-foreground mb-4">Edit Task</h3>
-          <input
-            type="text"
-            id="edit-input"
-            class="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary mb-4 text-foreground"
-          />
-          <div class="flex gap-3 justify-end">
-            <button
-              id="cancel-edit"
-              class="px-4 py-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
-            >
-              Cancel
-            </button>
-            <button
-              id="save-edit"
-              class="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-all duration-200"
-            >
-              Save Changes
-            </button>
-          </div>
+    <div id="edit-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-40 p-4">
+        <div class="bg-card rounded-lg shadow-xl max-w-md w-full animate-fade-in border border-border">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold text-foreground mb-4">Edit Task</h3>
+                <input 
+                    type="text" 
+                    id="edit-input" 
+                    class="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary mb-4 text-foreground"
+                >
+                <div class="flex gap-3 justify-end">
+                    <button 
+                        id="cancel-edit" 
+                        class="px-4 py-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
+                    >
+                        Cancel
+                    </button>
+                    <button 
+                        id="save-edit" 
+                        class="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-all duration-200"
+                    >
+                        Save Changes
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <!-- For Delete -->
-    <div
-      id="delete-modal"
-      class="fixed inset-0 bg-black/50 hidden items-center justify-center z-40 p-4"
-    >
-      <div
-        class="bg-card rounded-lg shadow-xl max-w-md w-full animate-fade-in border border-border"
-      >
-        <div class="p-6">
-          <h3 class="text-lg font-semibold text-foreground mb-4">
-            Delete Task
-          </h3>
-          <p class="text-muted-foreground mb-6">
-            Are you sure you want to delete this task? This action cannot be
-            undone.
-          </p>
-          <div class="flex gap-3 justify-end">
-            <button
-              id="cancel-delete"
-              class="px-4 py-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
-            >
-              Cancel
-            </button>
-            <button
-              id="confirm-delete"
-              class="px-4 py-2 bg-destructive text-destructive-foreground rounded-lg hover:opacity-90 transition-all duration-200"
-            >
-              Delete Task
-            </button>
-          </div>
+    <div id="delete-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-40 p-4">
+        <div class="bg-card rounded-lg shadow-xl max-w-md w-full animate-fade-in border border-border">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold text-foreground mb-4">Delete Task</h3>
+                <p class="text-muted-foreground mb-6">Are you sure you want to delete this task? This action cannot be undone.</p>
+                <div class="flex gap-3 justify-end">
+                    <button 
+                        id="cancel-delete" 
+                        class="px-4 py-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
+                    >
+                        Cancel
+                    </button>
+                    <button 
+                        id="confirm-delete" 
+                        class="px-4 py-2 bg-destructive text-destructive-foreground rounded-lg hover:opacity-90 transition-all duration-200"
+                    >
+                        Delete Task
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <script src="app.js"></script>
-  </body>
+</body>
 </html>
