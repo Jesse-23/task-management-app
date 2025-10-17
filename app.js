@@ -329,55 +329,35 @@ class TaskManager {
 // This initializes the app
 const taskManager = new TaskManager();
 
-// Progressive Web App (PWA) + INSTALL PROMPT SETUP
-
-// this registers service worker
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("service-worker.js")
-      .then(() => console.log("✅ Service Worker registered"))
-      .catch((err) => console.log("❌ Service Worker failed:", err));
-  });
-}
-
+// --- (Progressive Web App)PWA Install Button Logic ---
 let deferredPrompt;
+const installBtn = document.getElementById("install-btn");
 
+// Store the prompt event when available
 window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-
-  // this hows install suggestion after 1 minute (60,000 ms)
-  setTimeout(() => {
-    showInstallPrompt();
-  }, 60000);
+    e.preventDefault();
+    deferredPrompt = e;
+    console.log("✅ Install prompt event saved");
 });
 
-function showInstallPrompt() {
-  // this only shows once per session
-  if (sessionStorage.getItem("installPromptShown")) return;
-  sessionStorage.setItem("installPromptShown", "true");
-
-  const banner = document.createElement("div");
-  banner.className =
-    "fixed bottom-6 right-6 bg-primary text-primary-foreground px-4 py-3 rounded-lg shadow-lg animate-fade-in z-50 flex items-center gap-3";
-  banner.innerHTML = `
-    <span>📱 Install this Task Manager app?</span>
-    <button id="install-btn" class="bg-accent text-accent-foreground px-3 py-1 rounded-md font-semibold hover:opacity-90 transition-all">Install</button>
-  `;
-  document.body.appendChild(banner);
-
-  document.getElementById("install-btn").addEventListener("click", async () => {
+// Always show button, but check if prompt is ready
+installBtn.addEventListener("click", async () => {
     if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === "accepted") {
-        console.log("App installed!");
-      } else {
-        console.log("User dismissed install");
-      }
-      deferredPrompt = null;
-      banner.remove();
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === "accepted") {
+            console.log("📱 User installed the app");
+        } else {
+            console.log("❌ User dismissed the install prompt");
+        }
+        deferredPrompt = null;
+    } else {
+        alert("⚠️ App not ready for installation yet. Please wait a moment and try again.");
     }
-  });
-}
+});
+
+// Optional: hide button if app is already installed
+window.addEventListener("appinstalled", () => {
+    console.log("🎉 App installed");
+});
+
